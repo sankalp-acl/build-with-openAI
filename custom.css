@@ -1,0 +1,100 @@
+/* Change the color of the title */
+.css-1b8d1jr {
+    color: rgb(255, 0, 0); /* Red color */
+}
+
+/* Change the color of subheaders */
+.css-15ewp1i {
+    color: rgb(0, 128, 0); /* Green color */
+}
+
+/* Change the color of episode title */
+.css-jso6ek {
+    color: rgb(0, 0, 255); /* Blue color */
+}
+
+/* Change the color of sidebar headers to neon pink */
+.css-1n3ei08 {
+    color: rgb(255, 0, 255) !important; /* Neon pink color */
+}
+
+/* Change the color of main page*/
+.css-ffhzg2 {
+    position: absolute;
+    background: #0d0631;
+}
+
+/* Change the color of sidebar */
+.css-1cypcdb
+{
+    /* background-color: #4f3601 !important; */
+    background: #AB0CA7;
+    background: radial-gradient(at left top, #AB0CA7, #010F7F);
+}
+
+/* Change the color of header */
+.css-1avcm0n {
+    background-color: rgba(250, 250, 250, 0);
+}
+
+
+/* Change the color of status bar */
+.css-1dp5vir
+{
+    /* background-image: linear-gradient(90deg, rgb(255, 75, 75), rgb(255, 253, 128)); */
+    background: radial-gradient(at left top, #010F7F, #AB0CA7);  
+}
+
+/* Change the color of text fields */
+.st-bu {
+    /* background-color: rgba(255, 255, 255, 0.2); */
+    background-color: rgba(255, 255, 255, 0);
+    border: 0px;
+    border-bottom: 1px;
+    border-radius: 20px;
+}
+
+/* Change the color of buttons */
+.css-hc3laj {
+    
+    border-radius: 1rem;
+    color: inherit;
+    width: auto;
+    user-select: none;
+    background-color: #7c0ea4;
+    border: 0px solid rgba(250, 250, 250, 0.2);
+    box-shadow: 0 5px 15px rgb(0 0 0 / 0.2);
+}
+
+.css-hc3laj:hover {
+    border-color: rgb(233 139 239);
+    color: rgb(233 139 239);
+    background: #080a5e;
+}
+
+.css-hc3laj:focus:not(:active) {
+    border-color: rgb(233 139 239);;
+    color: rgb(233 139 239);;
+}
+
+
+
+/* Change the color of headers */
+.css-10trblm {
+    color: #a14db8;
+}
+
+.st-bt {
+    background-color: rgba(255, 255, 255,0.1);
+    border:0px;
+    border-radius: 1em;
+}
+
+/* Change the color of dropdown */
+.st-dr {
+    background-color: rgb(2 1 10);
+}
+
+.css-15wihvi:hover, .css-15wihvi:active, .css-15wihvi:focus-visible {
+    background: rgb(154 47 135);
+}
