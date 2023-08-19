@@ -199,8 +199,6 @@ def main():
             with st.sidebar:
                 with st.spinner("Processing podcast, may take up to 5 minutes..."):
                     if process_podcast_info(url):
-                        st.success("Successfully processed, refreshing now...")
-                        time.sleep(1)
                         podcast_info = process_podcast_info(url)
                         processed_podcast_name = podcast_info["podcast_details"][
                             "podcast_title"
