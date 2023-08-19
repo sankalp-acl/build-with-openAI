@@ -4,7 +4,6 @@ import json
 import os
 import altair as alt
 import pandas as pd
-import time
 
 # add a custom css file
 st.markdown(
@@ -310,7 +309,7 @@ def create_dict_from_json_files(folder_path):
 
 def process_podcast_info(url):
     f = modal.Function.lookup("corise-podcast-project", "process_podcast")
-    output = f.call(url, "/content/podcast/")
+    output = f.remote(url, "/content/podcast/")
     return output
 
 
