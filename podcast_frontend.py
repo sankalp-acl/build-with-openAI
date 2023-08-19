@@ -4,6 +4,7 @@ import json
 import os
 import altair as alt
 import pandas as pd
+import time
 
 # add a custom css file
 st.markdown(
@@ -190,25 +191,29 @@ def main():
     )
 
     process_button = st.sidebar.button("Process Podcast Feed")
-    st.sidebar.markdown(
-        f"<p style='color: #f369ff;'><i><strong>Note:</strong> Podcast processing can take upto 5 mins, please be patient.</i></p>",
-        unsafe_allow_html=True,
-    )
 
     if process_button:
         with st.sidebar:
             with st.spinner("Processing podcast, may take up to 5 minutes..."):
                 if process_podcast_info(url):
+                    st.success("Successfully processed, refreshing now...")
+                    time.sleep(1)
                     podcast_info = process_podcast_info(url)
-                    st.success("Successfully processed podcast feed! :)")
+                    processed_podcast_name = podcast_info["podcast_details"][
+                        "podcast_title"
+                    ]
+                    available_podcast_info[processed_podcast_name] = podcast_info
+                    st.session_state.selected_podcast = processed_podcast_name
+                    # refresh main
+                    st.experimental_rerun()
                 else:
                     st.error("Error processing podcast feed :(")
-        
+
         # Call the function to process the URLs and retrieve podcast guest information
         # podcast_info = process_podcast_info(url)
 
         # Right section - Newsletter content
-        st.header("Newsletter Content")
+        st.header("Podcast Content")
 
         # Display the podcast title
         st.subheader("Episode Title")
