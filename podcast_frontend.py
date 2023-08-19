@@ -196,8 +196,16 @@ def main():
     )
 
     if process_button:
+        with st.sidebar:
+            with st.spinner("Processing podcast, may take up to 5 minutes..."):
+                if process_podcast_info(url):
+                    podcast_info = process_podcast_info(url)
+                    st.success("Successfully processed podcast feed! :)")
+                else:
+                    st.error("Error processing podcast feed :(")
+        
         # Call the function to process the URLs and retrieve podcast guest information
-        podcast_info = process_podcast_info(url)
+        # podcast_info = process_podcast_info(url)
 
         # Right section - Newsletter content
         st.header("Newsletter Content")

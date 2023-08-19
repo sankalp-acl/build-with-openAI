@@ -92,3 +92,16 @@
 .css-15wihvi:hover, .css-15wihvi:active, .css-15wihvi:focus-visible {
     background: rgb(154 47 135);
 }
+
+/* Change the color of spinner */
+.css-m1pgcn {
+    margin: 0px;
+    border-color: rgb(255 255 255) rgba(250, 250, 250, 0.2) rgba(250, 250, 250, 0.2);
+}
+
+/* Change the color of spinner text */
+.css-nahz7x {
+    font-family: "Source Sans Pro", sans-serif;
+    margin-bottom: -1rem;
+    font-style: italic;
+}
