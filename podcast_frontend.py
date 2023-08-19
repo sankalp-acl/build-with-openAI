@@ -193,69 +193,73 @@ def main():
     process_button = st.sidebar.button("Process Podcast Feed")
 
     if process_button:
-        with st.sidebar:
-            with st.spinner("Processing podcast, may take up to 5 minutes..."):
-                if process_podcast_info(url):
-                    st.success("Successfully processed, refreshing now...")
-                    time.sleep(1)
-                    podcast_info = process_podcast_info(url)
-                    processed_podcast_name = podcast_info["podcast_details"][
-                        "podcast_title"
-                    ]
-                    available_podcast_info[processed_podcast_name] = podcast_info
-                    st.session_state.selected_podcast = processed_podcast_name
-                    # refresh main
-                    st.experimental_rerun()
-                else:
-                    st.error("Error processing podcast feed :(")
+        if not url:
+            st.sidebar.error("Please enter a valid RSS Feed URL!")
+        else:
+            with st.sidebar:
+                with st.spinner("Processing podcast, may take up to 5 minutes..."):
+                    if process_podcast_info(url):
+                        st.success("Successfully processed, refreshing now...")
+                        time.sleep(1)
+                        podcast_info = process_podcast_info(url)
+                        processed_podcast_name = podcast_info["podcast_details"][
+                            "podcast_title"
+                        ]
+                        available_podcast_info[processed_podcast_name] = podcast_info
+                        st.session_state.selected_podcast = processed_podcast_name
+                        # refresh main
+                        st.experimental_rerun()
+                    else:
+                        st.error("Error processing podcast feed :(")
 
-        # Call the function to process the URLs and retrieve podcast guest information
-        # podcast_info = process_podcast_info(url)
+            # Call the function to process the URLs and retrieve podcast guest information
+            # podcast_info = process_podcast_info(url)
 
-        # Right section - Newsletter content
-        st.header("Podcast Content")
+            # Right section - Newsletter content
+            st.header("Podcast Content")
 
-        # Display the podcast title
-        st.subheader("Episode Title")
-        st.markdown(
-            f"<p style='margin-bottom: 5px; color: #FFDB58;'>{podcast_info['podcast_details']['episode_title']}</p>",
-            unsafe_allow_html=True,
-        )
-
-        # Display the podcast summary and the cover image in a side-by-side layout
-        col1, col2 = st.columns([7, 3])
-
-        with col1:
-            # Display the podcast episode summary
-            st.subheader("Podcast Episode Summary")
-            st.write(podcast_info["podcast_summary"])
-
-        with col2:
-            st.image(
-                podcast_info["podcast_details"]["episode_image"],
-                caption="Podcast Cover",
-                width=300,
-                use_column_width=True,
-            )
-
-        # Display the podcast guest and their details in a side-by-side layout
-        col3, col4 = st.columns([3, 7])
-
-        with col3:
-            st.subheader("Podcast Guest")
-            st.write(podcast_info["podcast_guest"]["name"])
-
-        with col4:
-            st.subheader("Podcast Guest Details")
-            st.write(podcast_info["podcast_guest"]["summary"])
-
-        # Display the five key moments
-        st.subheader("Key Moments")
-        key_moments = podcast_info["podcast_highlights"]
-        for moment in key_moments.split("\n"):
+            # Display the podcast title
+            st.subheader("Episode Title")
             st.markdown(
-                f"<p style='margin-bottom: 5px;'>{moment}</p>", unsafe_allow_html=True
+                f"<p style='margin-bottom: 5px; color: #FFDB58;'>{podcast_info['podcast_details']['episode_title']}</p>",
+                unsafe_allow_html=True,
             )
+
+            # Display the podcast summary and the cover image in a side-by-side layout
+            col1, col2 = st.columns([7, 3])
+
+            with col1:
+                # Display the podcast episode summary
+                st.subheader("Podcast Episode Summary")
+                st.write(podcast_info["podcast_summary"])
+
+            with col2:
+                st.image(
+                    podcast_info["podcast_details"]["episode_image"],
+                    caption="Podcast Cover",
+                    width=300,
+                    use_column_width=True,
+                )
+
+            # Display the podcast guest and their details in a side-by-side layout
+            col3, col4 = st.columns([3, 7])
+
+            with col3:
+                st.subheader("Podcast Guest")
+                st.write(podcast_info["podcast_guest"]["name"])
+
+            with col4:
+                st.subheader("Podcast Guest Details")
+                st.write(podcast_info["podcast_guest"]["summary"])
+
+            # Display the five key moments
+            st.subheader("Key Moments")
+            key_moments = podcast_info["podcast_highlights"]
+            for moment in key_moments.split("\n"):
+                st.markdown(
+                    f"<p style='margin-bottom: 5px;'>{moment}</p>",
+                    unsafe_allow_html=True,
+                )
 
     # Created by section
     st.sidebar.markdown("---")
