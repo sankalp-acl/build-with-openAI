@@ -5,11 +5,13 @@ import os
 import altair as alt
 import pandas as pd
 
+# add a custom css file
 st.markdown(
     f"<style>{open('custom.css').read()}</style>",
     unsafe_allow_html=True,
 )
 
+# add a custom favicon
 st.markdown(
     """<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">""",
     unsafe_allow_html=True,
@@ -22,9 +24,9 @@ if 'selected_podcast' not in st.session_state:
 def main():
     # Add a background image
     st.image('img/podcast_gif.gif', use_column_width=True)
-    #st.video('img/podcast_video.mp4', start_time=0)
 
-    st.title("Podcast Dashboard")
+    # st.title("Podcast Dashboard")
+    st.markdown(f"<h1 style='color: white;'>Podcast Dashboard</h1>", unsafe_allow_html=True)
 
     available_podcast_info = create_dict_from_json_files('.')
     
@@ -51,7 +53,6 @@ def main():
 
     # Dropdown box
     st.sidebar.subheader("Available Podcasts Feeds")
-    #selected_podcast = st.sidebar.selectbox("Select Podcast", options=available_podcast_info.keys())
     selected_podcast = st.sidebar.selectbox("Select Podcast", options=available_podcast_info.keys(),
                                             index=get_selected_podcast_index(st.session_state.selected_podcast, available_podcast_info))
 
@@ -65,16 +66,17 @@ def main():
         
 
         # Display the podcast title
-        st.subheader("Episode Title")
+        # st.subheader("Episode Title")
+        st.markdown(f"<h3 style='color: #f582ff;'>Episode Title</h3>", unsafe_allow_html=True)
         st.markdown(f"<p style='margin-bottom: 5px; color: #FFDB58;'>{podcast_info['podcast_details']['episode_title']}</p>", unsafe_allow_html=True)
-        #st.write(podcast_info['podcast_details']['episode_title'])
 
         # Display the podcast summary and the cover image in a side-by-side layout
         col1, col2 = st.columns([7, 3])
 
         with col1:
             # Display the podcast episode summary
-            st.subheader("Podcast Episode Summary")
+            # st.subheader("Podcast Episode Summary")
+            st.markdown(f"<h3 style='color: #f582ff;'>Podcast Episode Summary</h3>", unsafe_allow_html=True)
             st.write(podcast_info['podcast_summary'])
 
         with col2:
@@ -84,24 +86,26 @@ def main():
         col3, col4 = st.columns([3, 7])
 
         with col3:
-            st.subheader("Podcast Guest")
+            # st.subheader("Podcast Guest")
+            st.markdown(f"<h3 style='color: #f582ff;'>Podcast Guest</h3>", unsafe_allow_html=True)
             st.write(podcast_info['podcast_guest']['name'])
 
         with col4:
-            st.subheader("Podcast Guest Details")
+            # st.subheader("Podcast Guest Details")
+            st.markdown(f"<h3 style='color: #f582ff;'>Podcast Guest Details</h3>", unsafe_allow_html=True)
             st.write(podcast_info["podcast_guest"]['summary'])
             
         # add a horizontal line
         st.markdown("<hr>", unsafe_allow_html=True)
 
         # Display the five key moments
-        st.subheader("Key Moments")
+        # st.subheader("Key Moments")
+        st.markdown(f"<h3 style='color: #f582ff;'>Key Moments</h3>", unsafe_allow_html=True)
         key_moments = podcast_info['podcast_highlights']
         key_highlights = podcast_info['podcast_highlights'].split('\n')
         
         st.markdown(f"<p style='margin-bottom: 15px; color: #FFDB58;'><i>Key highlights from the podcast transcription are:</i></p>", unsafe_allow_html=True)
         for moment in key_highlights:
-            # skip if moment contains the word 'key highlights'
             if 'key highlights' in moment.lower() or moment == '':
                 pass
             else:
@@ -118,7 +122,9 @@ def main():
         st.sidebar.markdown("<hr>", unsafe_allow_html=True)
            
         # Display the key moments timeline chart
-        st.subheader("Key Moments Timeline")
+        # st.subheader("Key Moments Timeline")
+        st.markdown(f"<h3 style='color: #f582ff;'>Key Moments Timeline</h3>", unsafe_allow_html=True)
+        
         # add a subheader, small in font-size and in italics
         st.markdown(
             f"<p style='font-size: small; margin-bottom: 20px; color: #FFDB58;font-style: italic;'>Coming soon! The chart below shows the time distribution of key moments in the podcast episode.</p>", unsafe_allow_html=True)
@@ -151,7 +157,6 @@ def main():
         # Display the podcast title
         st.subheader("Episode Title")
         st.markdown(f"<p style='margin-bottom: 5px; color: #FFDB58;'>{podcast_info['podcast_details']['episode_title']}</p>", unsafe_allow_html=True)
-        #st.write(podcast_info['podcast_details']['episode_title'])
 
         # Display the podcast summary and the cover image in a side-by-side layout
         col1, col2 = st.columns([7, 3])
