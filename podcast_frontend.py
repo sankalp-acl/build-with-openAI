@@ -53,12 +53,14 @@ def main():
     )
 
     if search_query:
+        logger.info(f"Search query: {search_query}")
         matching_podcasts = find_matching_podcasts(search_query, available_podcast_info)
         if matching_podcasts:
             st.sidebar.subheader("Matching Podcasts")
             for podcast_name in matching_podcasts:
                 # Make the podcast name clickable
                 if st.sidebar.button(podcast_name, key=podcast_name):
+                    logger.info(f"Updating the search selected podcast: {podcast_name}")
                     # Set the selected podcast in the session state
                     st.session_state.selected_podcast = podcast_name
                     # display_podcast_details(podcast_name, available_podcast_info)
@@ -204,6 +206,7 @@ def main():
     process_button = st.sidebar.button("Process Podcast Feed")
 
     if process_button:
+        logger.info(f"Processing podcast: {url}")
         if not url:
             st.sidebar.error("Please enter a valid RSS Feed URL!")
         else:
@@ -221,6 +224,7 @@ def main():
                         st.success("Podcast processed successfully!")
 
                         # Force a UI refresh
+                        logger.info("Refreshing the UI...")
                         st.experimental_rerun()
                     else:
                         st.error("Error processing podcast feed :(")
