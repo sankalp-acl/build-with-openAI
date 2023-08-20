@@ -3,7 +3,3 @@ base = "dark"
 
 [client]
 toolbarMode = "minimal"
-
-[logger]
-level = "info"
-messageFormat = "%(asctime)s %(message)s"
