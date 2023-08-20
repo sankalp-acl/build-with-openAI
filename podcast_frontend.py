@@ -11,7 +11,7 @@ import sys
 logger = logging.getLogger(__name__)
 
 logging.basicConfig(
-    filename='podcast_frontend.log',
+    #filename='podcast_frontend.log',
     level=logging.getLevelName("INFO"),
     handlers=[logging.StreamHandler(sys.stdout)],
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
