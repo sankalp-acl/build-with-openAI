@@ -4,16 +4,16 @@ import json
 import os
 import altair as alt
 import pandas as pd
-import time
 import logging
 import sys
 
 logger = logging.getLogger(__name__)
+file_handler = logging.FileHandler("podcast_frontend.log")
+console_handler = logging.StreamHandler(sys.stdout)
 
 logging.basicConfig(
-    #filename='podcast_frontend.log',
     level=logging.getLevelName("INFO"),
-    handlers=[logging.StreamHandler(sys.stdout)],
+    handlers=[file_handler, console_handler],
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
 )
 
@@ -219,9 +219,9 @@ def main():
                         logger.info(f"Processed podcast: {processed_podcast_name}")
                         logger.info(f"Available podcasts: {available_podcast_info}")
                         st.success("Podcast processed successfully!")
-                        #TODO: Remove this button and find a way to automatically load the podcast
-                        if st.sidebar.button('Click to Load!', key=processed_podcast_name):
-                            st.session_state.selected_podcast = processed_podcast_name
+
+                        # Force a UI refresh
+                        st.experimental_rerun()
                     else:
                         st.error("Error processing podcast feed :(")
 
