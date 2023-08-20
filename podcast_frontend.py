@@ -218,8 +218,10 @@ def main():
                         st.session_state.selected_podcast = processed_podcast_name
                         logger.info(f"Processed podcast: {processed_podcast_name}")
                         logger.info(f"Available podcasts: {available_podcast_info}")
-                        # refresh main
-                        st.experimental_rerun()
+                        st.success("Podcast processed successfully!")
+                        #TODO: Remove this button and find a way to automatically load the podcast
+                        if st.sidebar.button('Click to Load!', key=processed_podcast_name):
+                            st.session_state.selected_podcast = processed_podcast_name
                     else:
                         st.error("Error processing podcast feed :(")
 
