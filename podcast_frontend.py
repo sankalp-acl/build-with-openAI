@@ -8,6 +8,7 @@ import logging
 import sys
 
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 file_handler = logging.FileHandler("podcast_frontend.log")
 console_handler = logging.StreamHandler(sys.stdout)
 
