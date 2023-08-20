@@ -4,6 +4,17 @@ import json
 import os
 import altair as alt
 import pandas as pd
+import time
+import logging
+import sys
+
+logger = logging.getLogger(__name__)
+
+logging.basicConfig(
+    level=logging.getLevelName("INFO"),
+    handlers=[logging.StreamHandler(sys.stdout)],
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+)
 
 # add a custom css file
 st.markdown(
@@ -204,6 +215,8 @@ def main():
                         ]
                         available_podcast_info[processed_podcast_name] = podcast_info
                         st.session_state.selected_podcast = processed_podcast_name
+                        logger.info(f"Processed podcast: {processed_podcast_name}")
+                        logger.info(f"Available podcasts: {available_podcast_info}")
                         # refresh main
                         st.experimental_rerun()
                     else:
