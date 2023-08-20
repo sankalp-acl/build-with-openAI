@@ -7,11 +7,10 @@ import pandas as pd
 import logging
 import sys
 
-from streamlit.logger import StreamHandler
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-console_handler = StreamHandler(stream=st)
 file_handler = logging.FileHandler("podcast_frontend.log")
+console_handler = logging.StreamHandler(sys.stdout)
 
 logging.basicConfig(
     level=logging.getLevelName("INFO"),
